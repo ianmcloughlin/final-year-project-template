@@ -13,7 +13,7 @@
 \usepackage{adjustbox}
 \usepackage{upquote}
 \usepackage{amsmath}
-%\usepackage{titlesec}
+\usepackage{titlesec}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
@@ -28,9 +28,9 @@
 
 
 
-\tikzstyle{rect} = [rectangle, fill=ProcessBlue, text width=4.5em, text centered, minimum height=4em, rounded corners]
+\tikzstyle{rect} = [rectangle, fill=blue!50, text width=4.5em, text centered, minimum height=4em, rounded corners]
 \tikzstyle{line} = [draw, ->, very thick]
-\tikzstyle{oval} = [ellipse, fill=SeaGreen, text width=5em, text centered]
+\tikzstyle{oval} = [ellipse, fill=green!50, text width=5em, text centered]
 
 \newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
 
@@ -67,7 +67,7 @@
       \includegraphics{img/gmit-logo.jpg}
     \end{center}
   \end{titlepage}
-  %\setcounter{page}{2}
+  \setcounter{page}{2}
   \tableofcontents
   \input{content.tex}
   \bibliographystyle{ieeetr}
