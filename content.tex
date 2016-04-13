@@ -129,6 +129,11 @@ Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in F
 
 \chapter{Technology Review}
 
+\section{php}
+PHP is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks.
+
+From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they designed it.
+
 \section{Zend Framework 2}
 Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
 
@@ -167,19 +172,41 @@ After installing it we can start using it, simply by creating \textit{composer.j
 \begin{minted}{json}
 {
     "require": {
-        "monolog/monolog": "1.0.*"
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5",
+        "zendframework/zftool": "dev-master",
     }
 }
 \end{minted}
 
+As you can see, require takes a key value pairs where key maps to package names and value is version of it. We also can configure the minimal supported release or nominal version. When \textit{composer.json} is completed, we can run command that will download chosen packages and configure them in our project. To do that run this command in console:
+\begin{minted}{bash}
+ $ php composer.phar update
+\end{minted} 
+
+\section{WAMP Server}
+
+\section{Server Grove Hosting}
+There is not so many hosting companies that supports Model View Controller structured \textbf{\textit{php}} websites, but the good old days when we were querying \textit{*.php} files are gone. This type of structure hides the extension and it will confuse the attacker on what sort of platform it was written.
+
+One of most popular hosting companies in Ireland is Blacknight Solutions. For one of my portfolio websites I was using their services. At that time I was not bothered with developing my own website from the scratch and I have used \textit{Drupal} Content Management System. It is quite easy to install and setup CMS for lite blog type of website, but when it comes to connecting 2 different platforms it is no longer useful. When I developed my porfolio website on \textbf{\textit{zf2}} and tried to host it on their server I had a lot of issues with their policy. Customers don't have access to main \textit{php.ini} file which can change write properties that has to be on to use MVC structured websites. 
+
+To solve this problems I have found \textit{Server Grove} hosting company that fully supports \textbf{\textit{Zend Framework 2}}, \textbf{\textit{Git Client}} and  \textbf{\textit{composer}}. It took me a while to move my domain name from BlackNight Solutions, but once I have it done all technical support on Server Grove is brilliant.
+
+
+
 \section{GitHub}
+
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
 	\includegraphics[width=3cm]{img/zf2/github-logo.png}
 \end{wrapfigure} 
 %------------------------------------------
+text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
 
+\section{JSON REST interface}
 
+~\cite{JSON_REST_interface}
 
 \begin{comment}
 image example
