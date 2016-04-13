@@ -32,6 +32,7 @@ This project was created by two fourth year software development students: Ronan
 
 Ronan was in charge of creating all aspects of the user facing mobile app. 
 Vladislav was in charge of creating all aspects of the staff facing web app.
+\linebreak
 
 We spent most of our shared time coming up with the overall architecture we would implement, and an interface to be used between mobile and web app for transfer of data.
 
@@ -117,44 +118,90 @@ We had various meetings each month with our supervisor and several members of th
 
 \chapter{Context}	% 3-5 pages
 \begin{itemize}
-\item Provide a context for your project.
-\item Set out the objectives of the project
-\item Briefly list each chapter / section and provide a 1-2 line description of what each section contains.
-\item List the resource URL (GitHub address) for the project and provide a brief list of the main elements at the URL.
+\item Our project consists of creating a food ordering system for the GMIT Catering Company.
+\item Our basic objectices were to create a mobile and web application to deal with the above item.
 \end{itemize}
 
-\section{Filler}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi enim, interdum ut elit lobortis, bibendum tempus diam. Etiam turpis ex, viverra tristique finibus nec, feugiat at metus. Curabitur tempus gravida interdum. Donec ac felis a lorem scelerisque elementum. Vestibulum sit amet gravida tortor, a iaculis orci. Nam a molestie augue. Curabitur malesuada odio at mattis molestie. In hac habitasse platea dictumst. Donec eu lectus eget risus hendrerit euismod nec at orci. Praesent porttitor aliquam diam, eu vestibulum nisl sollicitudin vel. Nullam sed egestas mi.
+Below we will:
+\begin{itemize}
+\item list what each chapter contains below.
+\item list out the various elements in our Github repositories below.
+\item explain the various components of our project.
+\end{itemize}
 
-Quisque vel erat a justo volutpat auctor a nec odio. Sed rhoncus augue sit amet nisl tincidunt, vitae cursus tellus efficitur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque et auctor dui. Fusce ornare odio ipsum, et laoreet mi molestie sed. Cras at massa sit amet ipsum gravida aliquam. Nulla suscipit porta imperdiet. Fusce eros neque, bibendum sit amet consequat non, pulvinar quis ipsum.
+\section{Web App}
 
-\subsection{More filler}
-Donec fermentum sapien ac rhoncus egestas. Nullam condimentum condimentum eros sit amet semper. Nam maximus condimentum ligula. Praesent faucibus in nisi vitae tempus. Sed pellentesque eleifend ante, ac malesuada nibh dapibus nec. Phasellus nisi erat, pulvinar vel sagittis sed, auctor et magna. Quisque finibus augue elit, consequat dignissim purus mollis nec. Duis ultricies euismod tortor, nec sodales libero pellentesque et. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+\section{Mobile App}
+The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
 
-Donec id interdum felis, in semper lacus. Mauris volutpat justo at ex dignissim, sit amet viverra massa pellentesque. Suspendisse potenti. Praesent sit amet ipsum non nibh eleifend pretium. In pretium sapien quam, nec pretium leo consequat nec. Pellentesque non dui lacus. Aenean sed massa lacinia, vehicula ante et, sagittis leo. Sed nec nisl ac tellus scelerisque consequat. Ut arcu metus, eleifend rhoncus sapien sed, consequat tincidunt erat. Cras ut vulputate ipsum.
+Initially I had no idea about JavaScript, web development or cross platform development. I spent much time studying JavaScript, Angular, Ionic, and the MEAN Stack (MongoDB, ExpressJS, AngularJS, and NodeJS). I then spent a lot fo time trying out various cross platform development frameworks.
 
-Curabitur et efficitur augue. Proin condimentum ultrices facilisis. Mauris nisi ante, ultrices sed libero eget, ultrices malesuada augue. Morbi libero magna, faucibus in nunc vitae, ultricies efficitur nisl. Donec eleifend elementum massa, sed eleifend velit aliquet gravida. In ac mattis est, quis sodales neque. Etiam finibus quis tortor eu consequat. Nullam condimentum est eget pulvinar ultricies. Suspendisse ut maximus quam, sed rhoncus urna.
+\subsection{Cross Platform Frameworks}
 
-\section{Filler}
-Phasellus eu tellus tristique nulla porttitor convallis. Vestibulum ac est eget diam mollis consectetur. Donec egestas facilisis consectetur. Donec magna orci, dignissim vel sem quis, efficitur condimentum felis. Donec mollis leo a nulla imperdiet, in bibendum augue varius. Quisque molestie massa enim, vitae ornare lacus imperdiet non. Donec et ipsum id ante imperdiet mollis. Nullam est est, euismod sit amet cursus a, feugiat a lectus. Integer sed mauris dolor.
+I first tried out Cordova, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up and running, and the stylings are horrid.
+\cite{https://cordova.apache.org/}
 
-Mauris blandit neque tortor, consequat aliquam nisi aliquam vitae. Integer urna dolor, fermentum ut iaculis ut, semper eu lacus. Curabitur mollis at lectus at venenatis. Donec fringilla diam ac risus imperdiet suscipit. Aliquam convallis quam vitae turpis interdum, quis pharetra lacus tincidunt. Nam dictum maximus lectus, vitae faucibus ante. Morbi accumsan velit nec massa tincidunt porttitor. Nullam gravida at justo id viverra. Mauris ante nulla, eleifend vitae sem vitae, porttitor lobortis eros.
+Next I tried out JQeuryMobile which had better styling but again I came across many issues.
+\cite{http://jquerymobile.com/}
 
-Cras tincidunt elit id nisi aliquam, id convallis ex bibendum. Sed vel odio fringilla, congue leo quis, aliquam metus. Nunc tempor vehicula lorem eu ultrices. Curabitur at libero luctus, gravida lectus sed, viverra mi. Cras ultrices aliquet elementum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed metus ante, suscipit sit amet finibus ut, gravida et orci. Nunc est odio, luctus quis diam in, porta molestie magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris pulvinar lacus odio, luctus tincidunt magna auctor ut. Ut fermentum nisl rhoncus, tempus nulla eget, faucibus tortor. Suspendisse eu ex nec nunc mollis pulvinar. Nunc luctus tempus tellus eleifend porta. Nulla scelerisque porttitor turpis porttitor mollis.
+Finally I came across the Ionic Framework which uses Cordova underneath. This framework has a huge community of developers, it has the support of Google, Microsoft and many other large companies. They closely work with the Angular team at Google and the TypeScript team at Microsoft. 
+They have a 24/7 group chat system set up with various sub rooms. 
+They have amazing documentation, regular blog posts, quick response to questions on the blog, forums and chat. 
+With Ionic you get:
+\begin{itemize}
+\item All the capabilities of Cordova, which allows you to access the Mobiles native APIs easily
+\item A slick native UI experience. The app changes design depending on the platform it's running on
+\item Extensive tooling. Starting an app, templates, app store image creation, logo creator, etc
+\item Rapid development cycle, there are constant updates (which can cause issues, but is usually great)
+\end{itemize}
+\cite{http://ionicframework.com/}
 
-Duis elementum efficitur auctor. Nam nisi nulla, fermentum sed arcu vel, posuere semper dui. Fusce ac imperdiet felis. Aenean quis vestibulum nisl. Integer sit amet tristique neque, at suscipit tortor. Morbi et placerat ante, vel molestie dui. Vivamus in nibh eget massa facilisis accumsan. Nunc et purus ac urna fermentum ultrices eget sit amet justo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras elementum dui nunc, ac tempor odio semper et. Ut est ipsum, sollicitudin eleifend nisl eu, scelerisque cursus nunc. Nam at lectus vulputate, volutpat tellus vel, pharetra mauris. Integer at aliquam massa, at iaculis sem. Morbi nec imperdiet odio. In hac habitasse platea dictumst.
+\subsection{Tooling}
+Once I decided on using the Ionic framework I spent my time completing various JavaScript, Angular and Ionic tutorials. This was a steep learning curve as there is so much tooling for all the JavaScript frameworks.
+I installed NodeJS in order to use NPM (Node Package Manager) in order install Ionic. 
 
-Mauris a neque lobortis, venenatis erat ut, eleifend quam. Nullam tincidunt tellus quis ligula bibendum, a malesuada erat gravida. Phasellus eget tellus non risus tincidunt sagittis condimentum quis enim. Donec feugiat sapien sit amet tincidunt fringilla. Vivamus in urna accumsan, vehicula sem in, sodales mauris. Aenean odio eros, tristique non varius id, tincidunt et neque. Maecenas tempor, ipsum et sollicitudin rhoncus, nibh eros tempus dolor, vitae dictum justo massa in eros. Proin nec lorem urna. In ullamcorper vitae felis sit amet tincidunt. Maecenas consectetur iaculis est, eu finibus mi scelerisque et. Nulla id ex varius, ultrices eros nec, luctus est. Aenean ac ex eget dui pretium mattis. Ut vitae nunc lectus. Proin suscipit risus eget ligula sollicitudin vulputate et id lectus.
+Then Ionic came with it's own tools for various tasks, including SASS for programmatic CSS, Bower (Like NPM or Maven) for adding in new components, Grunt for running tasks (like Ant) and some others like Gulp (similar again to NPM).
+
+Each of these tools takes time to learn. I read documentation and completed at least one tutorial for each.
+
+\section{Push Server}
+In order to facilitate push notifications I needed to get their device token and save it in a database.
+I created a controller in the mobile application, once the app starts it gets the device token along with some other information and sends it to the push server.
+
+The push server is always listening for incoming requests, once it receives one it evaluates it, adds a timestamp and saves the user object (JSON) to a CouchDB server (Using IBM's Cloudant Web Server).
+
+The push server is a MEAN Stack, Yeoman scafolded project that uses NodeJS as the environment, Express as the Web Framework and Angular as the MVC (Model View Controller) framework in order to build the web application.
+\linebreak
+
+The reasons we chose to have the push notification server separate is that:
+\begin{itemize}
+\item We did not realise we needed to save the device tokens initially and to implement this new table into the SQL schema is a big effort
+\item We wanted to try out a MEAN Stack application
+\item We felt there was no big dissadvantage on having the push server seperate
+\item The mobile app is so tightly integrated with the push server (everything is written in JavaScript), that it made creating the web application extremely simple
+\item The GMIT Catering company may assign the task of push notifications to somebody that they do not wish to have access to the food ordering system, such as a social media expert. 
+\end{itemize}
+
+Users can:
+\begin{itemize}
+\item Login/Logout via username and password
+\item View how many devices are registered for push notifications
+\item View previously sent push notifications
+\item Send new push notifications, and see if they were sent successfully.
+\end{itemize}
+
 
 \chapter{Methodology}	% 1-2 pages
 About one to two Pages
 
 Describe the way you went about your project:
 \begin{itemize}
-\item Agile / incremental and iterative approach to development. Planning, meetings.
-\item What about validation and testing? Junit or some other framework.
-\item If team based, did you use GitHub during the development process.
-\item Selection criteria for algorithms, languages, platforms and technolo-gies.
+\item We used an Agile / incremental and iterative approach to development. 
+\item There were plently of meeting and planning with our supervisor and the companies manager.
+\item We did user testing on the app, and constantly made sure all the routes were working.
+\item We designed a RESTful style route interface. This let us work on our own components without the web and mobile app waiting for each other.
+\item We used Github during the development process, tracking tasks via the Github Issue tracker.
+\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
 Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in Figure \ref{tikz:mydiagram}.
 
@@ -233,14 +280,30 @@ I decided to use PHP since I was already proficient at it and it works really we
 \subsubsection{JavaScript}
 
 \subsubsection{AngularJS}
-Here's some nicely formatted XML:
-\begin{minted}{xml}
-	<this>
-	<looks lookswhat="good">
-	Good
-	</looks>
-	</this>
-\end{minted}
+
+% Here's some nicely formatted XML:
+% \begin{minted}{xml}
+% 	<this>
+% 	<looks lookswhat="good">
+% 	Good
+% 	</looks>
+% 	</this>
+% \end{minted}
+
+\subsection{Tools}
+\subsubsection{Yeoman}
+
+\subsubsection{Grunt}
+
+\subsubsection{Jasmine}
+
+\subsubsection{Jade}
+
+\subsubsection{Bower}
+
+\subsubsection{NPM}
+
+\subsubsection{BASH}
 
 \subsection{Alternatives}
 % alternatives? JQueryPhone, PhoneGap, Cordova, Xamarin
@@ -251,6 +314,16 @@ Here's some nicely formatted XML:
 \subsubsection{JQueryMobile}
 
 \subsubsection{Xamarin}
+
+\section{Push Server}
+
+
+\subsection{CouchDB/Cloudant}
+
+\subsection{NodeJS}
+
+\subsection{ExpressJS}
+
 
 \section{REST Architecture}	% 1/2 pages
 \subsection{HTTP Requests}
