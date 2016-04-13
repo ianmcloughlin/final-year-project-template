@@ -128,18 +128,20 @@ Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in F
 
 
 \chapter{Technology Review}
-Prototype was developed using Zend Framework 2. This is an open source framework for developing Web applications and services. It was written on PHP and it is loosely coupled architecture, which allows developer to code each component independently and designed with Model View Controller structure.~\cite{einstein} Zend Framework 2 uses 100\% object-oriented code and utilises most of the new features of PHP 5.3, namely namespaces, late static binding, lambda functions and closures.~\cite{bworld}
 
-\begin{comment}
+\section{Zend Framework 2}
+Prototype was developed using Zend Framework 2. This is an open source framework for developing Web applications and services. It was written on PHP and it is loosely coupled architecture, which allows developer to code each component independently and designed with Model View Controller structure. Zend Framework 2 uses 100\% object-oriented code and utilises most of the new features of PHP 5.3, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
 
-Prototype was developed using Zend Framework 2. This is an open source framework for developing Web applications and services. It was written on PHP and it is loosely coupled architecture, which allows developer to code each component independently and designed with Model View Controller structure. "Zend Framework 2 uses 100% object-oriented code and utilises most of the new features of PHP 5.3, namely namespaces, late static binding, lambda functions and closures." (taken from http://framework.zend.com/about/).
-
-Barry and Elhakeem (Elhakeem, Barry 2013 (http://0-ieeexplore.ieee.org.library.gmit.ie/stamp/stamp.jsp?tp=&arnumber=6634012)) argues that Zend Framework enables simple, rapid and agile web application development process, and it also offers AJAX support to convert XML data into JSON format and integrates the most widely used APIs and Web Services of third-party companies such as Google, Microsoft, Amazon, Flickr and Yahoo. ZF provides many options for validation such as Dojo tools for validation and filtering of inputs.
+Barry and Elhakeem~\cite{ZendFramework-Security-Model} argues that Zend Framework enables simple, rapid and agile web application development process, and it also offers AJAX support to convert XML data into JSON format and integrates the most widely used APIs and Web Services of third-party companies such as Google, Microsoft, Amazon, Flickr and Yahoo. ZF provides many options for validation such as Dojo tools it also filters all inputs.
 
 Zend Framework 2 is connected to a local MySQL relational database management system, to store the information about customers, orders and user accounts. The connection is established using ZF2 DB Adapter and Mysqli driver.
 
-Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture (http://0-ieeexplore.ieee.org.library.gmit.ie/stamp/stamp.jsp?tp=&arnumber=5704330) . The Zend Framework 2 contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While Ionic application is responsible for Client Side View and Controller (Mobile applications). In this case Mobile application uses ZF2 Controllers to connect to MySQL database.
+\includegraphics{img/zf2/ionic_zf2_mysql_diagram.png}
 
+Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture ~\cite{MVC_Architecture_for_Developing_Service-based_Mobile_Applications}. The Zend Framework 2 contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While Ionic application is responsible for Client Side View and Controller (Mobile applications). In this case Mobile application uses ZF2 Controllers to connect to MySQL database.
+
+
+\begin{comment}
 
 Technology Review (Lit.) [7-10]:
 (You know what u r doin, brief description about technology)
