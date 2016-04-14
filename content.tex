@@ -4,6 +4,7 @@
 % assuming past tense as this report is talking about the completed project
 \paragraph{Abstract}
 %A brief description of what the project is, in about two-hundred and fifty words.
+
 % leave technical jargon out of it
 This project sets out to create a food ordering system for a local company. 
 The systems primary components are a mobile application that the user interacts with and a web application that the staff interact with.
@@ -90,6 +91,7 @@ We set out to create a well thought out, carefully designed, robust food orderin
 This project could be extended in the future to be used 
 \linebreak
 
+
 % authors (change)
 % mention how to laid it out between us
 % We thought out, designed and carefully laid out this project into many smaller components.
@@ -116,7 +118,26 @@ We had various meetings each month with our supervisor and several members of th
 
 % push link
 
+
+%% VLAD
+% - Set out the objectives of the project (Goals)
+
+% actual system:
+In order to develop this system we required to connect different platforms together and let them communicate. We were using Ionic Framework for creating cross mobile application that would talk to Zend Framework 2 which will act as administration website and API for controlling data transfer between MySQL database and mobile program.
+
+% Ionic part:
+Cross mobile application will authenticate users using their credentials. This option will let us to create account wallet, identify person and their order history. Mobile app design uses native phone features and user interface components to let user operate without any special training.
+
+% Zend part:
+Administration website allows user to configure and manage whole system. User can change opening, closing and food collection times. In order to access these settings user should authenticate him self and then will be able to nominate new administration members. This website also allows to view list of orders, customers and track their history.  
+
+% - Briefly list each chapter/section and provide 1-2 line description of what each section contains
+% - List the resources URL(GitHub address for the project and provide a brief list of the main elements at the URL)
+
+%Some of these routes acts as connections that informs mobile application about changes or receives 
+
 \chapter{Context}	% 3-5 pages
+
 \begin{itemize}
 \item Our project consists of creating a food ordering system for the GMIT Catering Company.
 \item Our basic objectices were to create a mobile and web application to deal with the above item.
@@ -256,19 +277,119 @@ Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in F
 \end{figure}
 
 
-\chapter{Technology Review}	% 7-10 pages
+\chapter{Technology Review} % 7-10 pages
+
+% intro to tech review, bla bla bla
+
+\section{Web App}	% 4 pages
+I decided to use PHP since I was already proficient at it and it works really well as a web app because....
+\subsection{php}
+PHP is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks.
+
+From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they designed it.
+
+\subsection{Zend Framework 2}
+Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
+
+%------------------------------------------
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/zf2/zf2-logo.png}
+\end{wrapfigure} 
+%------------------------------------------
+Barry and Elhakeem~\cite{ZendFramework-Security-Model} argues that Zend Framework enables simple, rapid and agile web application development process, and it also offers AJAX support to convert XML data into JSON format and integrates the most widely used APIs and Web Services of third-party companies such as Google, Microsoft, Amazon, Flickr and Yahoo. ZF provides many options for validation such as Dojo tools it also allow to filter all inputs.
+
+%Zend Framework 2 is connected to a local MySQL relational database management system, to store the information about customers, orders and user accounts. The connection is established using ZF2 DB Adapter and Mysqli driver.
+
+%\includegraphics{img/zf2/ionic_zf2_mysql_diagram.png}
+
+Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture ~\cite{MVC_Architecture_for_Developing_Service-based_Mobile_Applications}. The \textbf{\textit{Zend Framework 2}} contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While \textbf{\textit{Ionic}} is responsible for Client Side View and Controller (on the smartphone). In this case Mobile application uses \textbf{\textit{zf2}} Controllers to connect to \textbf{\textit{MySQL}} database.
+
+\subsection{MySQL}
+%------------------------------------------
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/zf2/mysql-logo.png}
+\end{wrapfigure} 
+%------------------------------------------
+To store information we were using \textbf{\textit{MySQL}} database management system. It's reliability is proven through the years. \textbf{\textit{MySQL}} offers complete ACID (atomic, consistent, isolated, durable) transaction support, unlimited row-level locking, distributed capability, and multi-version transaction support where readers never block writers and vice-versa. Easy manageable platform that allow a DBA to manage, troubleshoot, and control the operation of many \textbf{\textit{MySQL}} servers from a single workstation. ~\cite{MySQL_Top10_Reasons}
+
+\subsection{Composer}
+%------------------------------------------
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/zf2/composer-logo.png}
+\end{wrapfigure} 
+%------------------------------------------
+For such large distributed projects like this more often used some sort of dependency managers, that allow to force the development cycle and reuse any of already written packages. One of the most popular dependency manager for \textbf{\textit{php}} is \textbf{\textit{composer}}.
+After installing it we can start using it, simply by creating \textit{composer.json} file which describes the dependencies for your project and may contain other metadata as well.~\cite{Composer_doc} 
+
+\textbf{\textit{composer.json}} example:
+
+\begin{minted}{json}
+{
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5",
+        "zendframework/zftool": "dev-master",
+    }
+}
+\end{minted}
+
+As you can see, require takes a key value pairs where key maps to package names and value is version of it. We also can configure the minimal supported release or nominal version. When \textit{composer.json} is completed, we can run command that will download chosen packages and configure them in our project. To do that run this command in console:
+\begin{minted}{bash}
+ $ php composer.phar update
+\end{minted} 
+
+\subsection{WAMP Server}
+
+\subsection{Server Grove Hosting}
+There is not so many hosting companies that supports Model View Controller structured \textbf{\textit{php}} websites, but the good old days when we were querying \textit{*.php} files are gone. This type of structure hides the extension and it will confuse the attacker on what sort of platform it was written.
+
+One of most popular hosting companies in Ireland is Blacknight Solutions. For one of my portfolio websites I was using their services. At that time I was not bothered with developing my own website from the scratch and I have used \textit{Drupal} Content Management System. It is quite easy to install and setup CMS for lite blog type of website, but when it comes to connecting 2 different platforms it is no longer useful. When I developed my porfolio website on \textbf{\textit{zf2}} and tried to host it on their server I had a lot of issues with their policy. Customers don't have access to main \textit{php.ini} file which can change write properties that has to be on to use MVC structured websites. 
+
+To solve this problems I have found \textit{Server Grove} hosting company that fully supports \textbf{\textit{Zend Framework 2}}, \textbf{\textit{Git Client}} and  \textbf{\textit{composer}}. It took me a while to move my domain name from BlackNight Solutions, but once I have it done all technical support on Server Grove is brilliant.
+
+
+
+\subsection{GitHub}
+
+%------------------------------------------
+\begin{wrapfigure}{r}{2.5cm}
+	\includegraphics[width=3cm]{img/zf2/github-logo.png}
+\end{wrapfigure} 
+%------------------------------------------
+text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+
+\subsection{JSON REST interface}
+
+~\cite{JSON_REST_interface}
+
+\begin{comment}
+image example
+%------------------------------------------
+\begin{wrapfigure}{r}{5.5cm}
+\caption{A wrapped figure going nicely inside the text.}\label{wrap-fig:1}
+\includegraphics[width=5.5cm]{img/zf2/composer-logo.png}
+\end{wrapfigure} 
+%------------------------------------------
+\end{comment}
+
+\begin{comment}
+
+Technology Review (Lit.) [7-10]:
+(You know what u r doin, brief description about technology)
+- Describe each of the technologies you used at a conceptual level. Standards, Database Model(e.g. MongoDB, CouchDB), XML, WSDL, JSON, JAXP
+- Use references (IEEE format, e.g.[1])
+- Books, Papers, URLs (timestamps) - sources should be authoritative
+
+
 About seven to ten pages.
 \begin{itemize}
 \item Describe each of the technologies you used at a conceptual level. Standards, Database Model (e.g. MongoDB, CouchDB), XMl, WSDL, JSON, JAXP.
 \item Use references (IEEE format, e.g. [1]), Books, Papers, URLs (timestamp) – sources should be authoritative. 
 \end{itemize}
+\end{comment}
 
-\section{Web App}	% 4 pages
-I decided to use PHP since I was already proficient at it and it works really well as a web app because....
 
-\subsection{PHP}
 
-\subsection{Zend Framework}
 
 \pagebreak
 
@@ -334,38 +455,22 @@ I decided to use PHP since I was already proficient at it and it works really we
 \section{JSON}	% 1 pages
 
 \chapter{System Design}	% n-m pages
-As many pages as needed.
-\begin{itemize}
-\item Architecture, UML etc. An overview of the different components of the system. Diagrams etc… Screen shots etc.
-\end{itemize}
+\section{Web App}
 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{x{2cm}p{3cm}}
-    \toprule \\
-    Column 1 & Column 2 \\
-    \midrule \\
-    Rows 2.1 & Row 2.2 \\
-    \bottomrule
-  \end{tabular}
-  \caption{A table.}
-  \label{table:mytable}
-\end{table}
+\section{Mobile App}
+
 
 \chapter{System Evaluation}	% n-m pages
-As many pages as needed.
-\begin{itemize}
-\item Prove that your software is robust. How? Testing etc. 
-\item Use performance benchmarks (space and time) if algorithmic.
-\item Measure the outcomes / outputs of your system / software against the objectives from the Introduction.
-\item Highlight any limitations or opportuni-ties in your approach or technologies used.
-\end{itemize}
+\section{Web App}
+
+\section{Mobile App}
+
 
 \chapter{Conclusion}	% 1-3 pages
-About three pages.
 
+\begin{comment}
 \begin{itemize}
 \item Briefly summarise your context and ob-jectives (a few lines).
 \item Highlight your findings from the evalua-tion section / chapter and any opportuni-ties identified.
 \end{itemize}
-
+\end{comment}
