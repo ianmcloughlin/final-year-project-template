@@ -131,10 +131,16 @@ Below we will:
 
 \section{Web App}
 
+I decided to do this because of that, etc
+PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
+SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
+
 \section{Mobile App}
 The mobile application is created using bleeding edge technologies such as the Ionic framework, which utilizes the AngularMVW framework, which in turn is programmed using JavaScript. HTML and CSS were also heavily utilized.
 
 Initially I had no idea about JavaScript, web development or cross platform development. I spent much time studying JavaScript, Angular, Ionic, and the MEAN Stack (MongoDB, ExpressJS, AngularJS, and NodeJS). I then spent a lot fo time trying out various cross platform development frameworks.
+
+I will speak more in detail about these technologies in the technology review chapter.
 
 \subsection{Cross Platform Frameworks}
 
@@ -203,15 +209,16 @@ Describe the way you went about your project:
 \item We used Github during the development process, tracking tasks via the Github Issue tracker.
 \item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
+
 Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in Figure \ref{tikz:mydiagram}.
 
 \begin{figure}
 	\centering
 	\begin{tikzpicture}
 	\begin{scope}[every node/.style={circle,thick,draw}]
-	\node (a) at (0,2) {a};
-	\node (b) at (2,2) {b};
-	\node (c) at (2,0) {c};
+	\node (a) at (0,2) {Mobile App};
+	\node (b) at (2,2) {Web App};
+	\node (c) at (2,0) {Push Server};
 	\node (d) at (0,0) {d};
 	\end{scope}
 	\begin{scope}[every edge/.style={draw=black,thick}]
