@@ -26,6 +26,7 @@ Interactions from within the mobile application including: topping up, logging i
 We plan to create a cohesive, thoughtfully designed, robust system that solves these two problems.
 \pagebreak
 
+
 \paragraph{Authors}
 %Explain here who the authors are.
 This project was created by two fourth year software development students: Ronan Connolly \& Vladislav Marisevs, as part of our Bachelors of Science honours degree in Software Development. 
@@ -36,9 +37,9 @@ Vladislav was in charge of creating all aspects of the staff facing web app.
 \linebreak
 
 We spent most of our shared time coming up with the overall architecture we would implement, and an interface to be used between mobile and web app for transfer of data.
+\linebreak
+%\pagebreak
 
-
-\pagebreak
 \paragraph{Acknowledgements}
 We would like to acknowledge and thank our supervisor Dr John Healy for all the time and effort he has put into helping us throughout this project, he gave us a good structure and set milestones for us in order to keep on top of things.
 \linebreak
@@ -46,14 +47,6 @@ We would like to acknowledge and thank our supervisor Dr John Healy for all the 
 We'd also like to thank the GMIT Catering Company staff for the time spent meeting with us in order to continuously improve and adapt the project.
 
 \chapter{Introduction}	% 3-5 pages
-%The introduction should be about three to five pages long.
-%Make sure you use references~\cite{einstein}
-
-% should contain a breif intro the the project, how it came about, the reason for it.
-% also will break it down into an intro to the latter chapter?
-
-% abstract (change)
-
 %% CONTEXT
 % basic idea
 We set out to create a food ordering system for the GMIT Catering Company (known henceforth as the company).
@@ -70,14 +63,26 @@ Lastly, the company wants to increase presence and promotion in the college, in 
 \linebreak
 
 %% OBJECTIVES
+% actual system:
+In order to develop this system we required to connect different platforms together and let them communicate. We were using Ionic Framework for creating cross mobile application that would talk to Zend Framework 2 which will act as administration website and API (Application Programming Interface) for controlling data transfer between MySQL database and mobile program.
+\linebreak
+
 % mobile app features
 The components contained within the mobile app include pages for login, registration, about the company and user details There is also a way to top up and order sandwiches.
 A huge emphasis is put on design for this project, using the companies colour theme and creating a nice icon.
 % tech
 This mobile app was created using the Ionic Framework which is programmed primarily using the AngularJS framework.
+% Ionic part:
+It's a cross platform mobile application that will authenticate users using their credentials. This option will allow us to create an account wallet, identify a person and their order history. The mobile app design uses native phone features and user interface components to let user operate without any special training.
+\linebreak
 
 % web app features
 The components contained within the web app include many pages such as the login system, orders, stock, user details, vouchers(for adding credit to your account), settings(collection and opening times) and accounts(staff) pages.
+% Zend part:
+This web app is a administration website which allows user to configure and manage the whole system. Users can change opening, closing and food collection times. In order to access these settings users should authenticate him self and then will be able to nominate new administration members. This website also allows to view list of orders, customers and track their history.  
+%Some of these routes acts as connections that informs mobile application about changes or receives 
+\linebreak
+
 %tech
 This web app was created in PHP using Zend Framework 2.
 % reflection in app
@@ -91,67 +96,81 @@ We set out to create a well thought out, carefully designed, robust food orderin
 This project could be extended in the future to be used 
 \linebreak
 
-
-% authors (change)
-% mention how to laid it out between us
-% We thought out, designed and carefully laid out this project into many smaller components.
-%Ronan was in charge of creating all aspects of the user facing mobile app. 
-%Vladislav was in charge of creating all aspects of the staff facing web app.
-
-
 % mention agile
 We used an agile structure where we had certain components we needed complete by specific dates.
 % mention meetings
 We had various meetings each month with our supervisor and several members of the company.
 
 %% CHAPTER SUMMARIES
+\section{Chapter Summaries}
+Here is a summary of all the chapters in this project report.
+
+\subsection*{Context}
+Here we talk about how the project came about, what the initial ideas, goals and objectives were.
+We'll also talk about the main components of our project, how we chose them, the alternatives we tried out and a basic overview of the usage of our food ordering system.
+
+\subsection*{Methodology}
+An insight into how we began the project, the research, our technology and design choices, our thought process and how we went about allocating tasks and organising meetings.
+
+We'll also talk about the objectives we set out to accomplish and how we went about completing them.
+
+\subsection*{Technology Review}
+Here we talk about all the technologies that we have mentioned in this report and any others that we may have used in completing the project.
+
+\subsection*{System Design}
+An overview of the project architecture, including lots of diagrams and screen shots.
+
+\subsection*{System Evaluation}
+An evaluation of our various project components, including how we tested our system for robustness and performance.
+We talk about the outcomes that were achieved in relation to what are goals were, how far we strayed from our goals and some issues we came up against.
+Any limitations or opportunities we encountered in our approach and in the technologies we chose.
+
+\subsection*{Conclusion}
+A broad overview of our development work-flow, from our thought processes, meetings, technology choices to our issues,problems and perceptions of the project as a whole.
+We'll touch on our overall experience and what we would have done differently.
+
+\section{GitHub Links}
+The web and mobile app repositories are private so you must ask to be added as a collaborator in order to view them.
+Each of the headings are clickable, they contain links to each GitHub repository.
 
 
-%% GITHUB URLS
-%% Web App
+\subsection*{\href{http://gmit-catering.github.io/final-year-project-template/}{Gist ReadMe}}
+This contains basic instructions for using each component of the project.
 
-%% Mobile App
+\subsection*{\href{https://github.com/VMarisevs/CanteenOrderSystem}{Web App}}
+The food ordering web app.
 
-% main link
+\subsection*{\href{https://github.com/RonanC/gmit-catering}{Mobile App}}
+The Ionic mobile application.
 
-% test server link
+\subsection*{\href{https://github.com/RonanC/gmit-catering-test-server}{Test Server}}
+The test server that we used initially to test the mobile app.
+This received requests and sent back mock data that imitated the real server.
 
-% push link
+\subsection*{\href{https://github.com/RonanC/gmitcat-push}{Push Web App}}
+This web application is a MEAN stack application.
+It is hosted on Heroku and is used to save user details.
+Administrators can log in and send push notification messages to registered users.
 
-
-%% VLAD
-% - Set out the objectives of the project (Goals)
-
-% actual system:
-In order to develop this system we required to connect different platforms together and let them communicate. We were using Ionic Framework for creating cross mobile application that would talk to Zend Framework 2 which will act as administration website and API for controlling data transfer between MySQL database and mobile program.
-
-% Ionic part:
-Cross mobile application will authenticate users using their credentials. This option will let us to create account wallet, identify person and their order history. Mobile app design uses native phone features and user interface components to let user operate without any special training.
-
-% Zend part:
-Administration website allows user to configure and manage whole system. User can change opening, closing and food collection times. In order to access these settings user should authenticate him self and then will be able to nominate new administration members. This website also allows to view list of orders, customers and track their history.  
+\subsection*{\href{https://github.com/GMIT-Catering/final-year-project-template}{Project Report}}
+This project report is located here.
 
 % - Briefly list each chapter/section and provide 1-2 line description of what each section contains
 % - List the resources URL(GitHub address for the project and provide a brief list of the main elements at the URL)
-
-%Some of these routes acts as connections that informs mobile application about changes or receives 
 
 \chapter{Context}	% 3-5 pages
 
 \begin{itemize}
 \item Our project consists of creating a food ordering system for the GMIT Catering Company.
-\item Our basic objectices were to create a mobile and web application to deal with the above item.
+\item Our basic objectives were to create a mobile and web application to deal with the above item.
 \end{itemize}
 
 Below we will:
 \begin{itemize}
-\item list what each chapter contains below.
-\item list out the various elements in our Github repositories below.
 \item explain the various components of our project.
 \end{itemize}
 
 \section{Web App}
-
 I decided to do this because of that, etc
 PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
 SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
@@ -168,7 +187,7 @@ I will speak more in detail about these technologies in the technology review ch
 I first tried out Cordova, which I found had the capabilities to do pretty much anything, but the community and framework is very sparse, it's hard to get anything up and running, and the stylings are horrid.
 \cite{https://cordova.apache.org/}
 
-Next I tried out JQeuryMobile which had better styling but again I came across many issues.
+Next I tried out JQueryMobile which had better styling but again I came across many issues.
 \cite{http://jquerymobile.com/}
 
 Finally I came across the Ionic Framework which uses Cordova underneath. This framework has a huge community of developers, it has the support of Google, Microsoft and many other large companies. They closely work with the Angular team at Google and the TypeScript team at Microsoft. 
@@ -219,73 +238,52 @@ Users can:
 
 
 \chapter{Methodology}	% 1-2 pages
-About one to two Pages
-
-Describe the way you went about your project:
+% Describe the way you went about your project:
+\begin{comment}
 \begin{itemize}
-\item We used an Agile / incremental and iterative approach to development. 
-\item There were plently of meeting and planning with our supervisor and the companies manager.
-\item We did user testing on the app, and constantly made sure all the routes were working.
-\item We designed a RESTful style route interface. This let us work on our own components without the web and mobile app waiting for each other.
-\item We used Github during the development process, tracking tasks via the Github Issue tracker.
-\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
+	\item We used an Agile / incremental and iterative approach to development. 
+	\item There were plenty of meeting and planning with our supervisor and the companies manager.
+	\item We did user testing on the app, and constantly made sure all the routes were working.
+	\item We designed a RESTful style route interface. This let us work on our own components without the web and mobile app waiting for each other.
+	\item We used GitHub during the development process, tracking tasks via the Github Issue tracker.
+	\item We tested out various technologies at each step of the way and discussed why we were choosing each one.
 \end{itemize}
+\end{comment}
 
-Check out the nice graphs in Figure \ref{tikz:graphs}, and the nice diagram in Figure \ref{tikz:mydiagram}.
+\subsection{Direction}
+%How we went about our project
+\subsubsection{Interface}
 
-\begin{figure}
-	\centering
-	\begin{tikzpicture}
-	\begin{scope}[every node/.style={circle,thick,draw}]
-	\node (a) at (0,2) {Mobile App};
-	\node (b) at (2,2) {Web App};
-	\node (c) at (2,0) {Push Server};
-	\node (d) at (0,0) {d};
-	\end{scope}
-	\begin{scope}[every edge/.style={draw=black,thick}]
-	\path (a) edge (b);
-	\path (b) edge (c);
-	\path (b) edge (d);
-	\path (c) edge (d);
-	\end{scope}
-	\node () at (1,-1) {$G_1$};
-	\end{tikzpicture}
-	\hspace{1.5cm}
-	\begin{tikzpicture}
-	\begin{scope}[every node/.style={circle,thick,draw}]
-	\node (1) at (0,2) {a};
-	\node (2) at (2,2) {b};
-	\node (3) at (2,0) {c};
-	\node (4) at (0,0) {d};
-	\end{scope}
-	\begin{scope}[every edge/.style={draw=black,thick}]
-	\path (1) edge (2);
-	\path (1) edge (3);
-	\path (1) edge (4);
-	\path (3) edge (4);
-	\end{scope}
-	\node () at (1,-1) {$G_2$};
-	\end{tikzpicture}
-	\caption{Nice pictures}
-	\label{tikz:graphs}
-\end{figure}
+\subsubsection{Bleeding Edge Technologies}
 
-\begin{figure}
-	\centering
-	\begin{tikzpicture}[node distance=6cm]
-%	\node (a) [rect] {A Big Blue Block};
-%	\node[rect](name)
-	\node (a) at (4,2) [draw,thick,minimum width=2cm,minimum height=2cm, blue] {A Big Blue Block};
-	\node (b) [oval, right of=a] {And His Oval Friend};
-	\draw [line] (a) -- (b);
-	\end{tikzpicture}
-	\caption{Nice pictures}
-	\label{tikz:graphs}
-\end{figure}
+\subsection{Agility}
+% Agile / incremental and iterative approach to development. Planning, meetings.
+\subsubsection{Agile}
+
+\subsubsection{Meetings}
+
+\subsection{Testing}
+%What about validation and testing? Junit or some other framework.
+\subsubsection{Test Server}
+
+\subsection{Source Control}
+%If team based, did you use GitHub during the development process.
+\subsubsection{GitHub}
+
+\subsection{Choice}
+%Selection criteria for algorithms, languages, platforms and technologies.
+We already mentioned in the Context chapter about why we chose Ionic, Zend and Mean stack framework/architectures.
+Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core technologies.
+\subsubsection{PHP}
+
+\subsubsection{SQL}
+
+\subsubsection{JavaScript}
+
+\subsubsection{JSON}
 
 
 \chapter{Technology Review} % 7-10 pages
-
 % intro to tech review, bla bla bla
 
 \section{Web App}	% 4 pages
@@ -363,42 +361,21 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 	\includegraphics[width=3cm]{img/zf2/github-logo.png}
 \end{wrapfigure} 
 %------------------------------------------
-text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+text
 
 \subsection{JSON REST interface}
 
 ~\cite{JSON_REST_interface}
 
+
 \begin{comment}
-image example
-%------------------------------------------
 \begin{wrapfigure}{r}{5.5cm}
 \caption{A wrapped figure going nicely inside the text.}\label{wrap-fig:1}
 \includegraphics[width=5.5cm]{img/zf2/composer-logo.png}
 \end{wrapfigure} 
-%------------------------------------------
-\end{comment}
-
-\begin{comment}
-
-Technology Review (Lit.) [7-10]:
-(You know what u r doin, brief description about technology)
-- Describe each of the technologies you used at a conceptual level. Standards, Database Model(e.g. MongoDB, CouchDB), XML, WSDL, JSON, JAXP
-- Use references (IEEE format, e.g.[1])
-- Books, Papers, URLs (timestamps) - sources should be authoritative
-
-
-About seven to ten pages.
-\begin{itemize}
-\item Describe each of the technologies you used at a conceptual level. Standards, Database Model (e.g. MongoDB, CouchDB), XMl, WSDL, JSON, JAXP.
-\item Use references (IEEE format, e.g. [1]), Books, Papers, URLs (timestamp) – sources should be authoritative. 
-\end{itemize}
 \end{comment}
 
 
-
-
-\pagebreak
 
 \section{Mobile App} % 4 pages
 \subsection{Ionic Framework}
