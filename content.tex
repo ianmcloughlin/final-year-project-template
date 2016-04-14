@@ -29,20 +29,20 @@ We plan to create a cohesive, thoughtfully designed, robust system that solves t
 
 \paragraph{Authors}
 %Explain here who the authors are.
-This project was created by two fourth year software development students: Ronan Connolly \& Vladislav Marisevs, as part of our Bachelors of Science honours degree in Software Development. 
-\linebreak
+This project was created by two fourth year software development students: Ronan Connolly \& Vladislav Marisevs, as part of our Bachelors of Science honours degree in Software Development.
+\\
 
 Ronan was in charge of creating all aspects of the user facing mobile app. 
 Vladislav was in charge of creating all aspects of the staff facing web app.
-\linebreak
+\\
 
 We spent most of our shared time coming up with the overall architecture we would implement, and an interface to be used between mobile and web app for transfer of data.
-\linebreak
+\\
 %\pagebreak
 
 \paragraph{Acknowledgements}
 We would like to acknowledge and thank our supervisor Dr John Healy for all the time and effort he has put into helping us throughout this project, he gave us a good structure and set milestones for us in order to keep on top of things.
-\linebreak
+\\
 
 We'd also like to thank the GMIT Catering Company staff for the time spent meeting with us in order to continuously improve and adapt the project.
 
@@ -60,12 +60,12 @@ Another reason is to encourage customers to get into a habit of repeat ordering,
 
 % reason #3
 Lastly, the company wants to increase presence and promotion in the college, in order to achieve this end we have implemented push notifications where staff can send a notification to all users. On top of this the mobile application itself serves as a promotional device, containing details of various aspects of the company.
-\linebreak
+\\
 
 %% OBJECTIVES
 % actual system:
 In order to develop this system we required to connect different platforms together and let them communicate. We were using Ionic Framework for creating cross mobile application that would talk to Zend Framework 2 which will act as administration website and API (Application Programming Interface) for controlling data transfer between MySQL database and mobile program.
-\linebreak
+\\
 
 % mobile app features
 The components contained within the mobile app include pages for login, registration, about the company and user details There is also a way to top up and order sandwiches.
@@ -74,14 +74,14 @@ A huge emphasis is put on design for this project, using the companies colour th
 This mobile app was created using the Ionic Framework which is programmed primarily using the AngularJS framework.
 % Ionic part:
 It's a cross platform mobile application that will authenticate users using their credentials. This option will allow us to create an account wallet, identify a person and their order history. The mobile app design uses native phone features and user interface components to let user operate without any special training.
-\linebreak
+\\
 
 % web app features
 The components contained within the web app include many pages such as the login system, orders, stock, user details, vouchers(for adding credit to your account), settings(collection and opening times) and accounts(staff) pages.
 % Zend part:
 This web app is a administration website which allows user to configure and manage the whole system. Users can change opening, closing and food collection times. In order to access these settings users should authenticate him self and then will be able to nominate new administration members. This website also allows to view list of orders, customers and track their history.  
 %Some of these routes acts as connections that informs mobile application about changes or receives 
-\linebreak
+\\
 
 %tech
 This web app was created in PHP using Zend Framework 2.
@@ -94,7 +94,7 @@ The two applications talk to each other via JSON over HTTP Get and Post requests
 % conclusion
 We set out to create a well thought out, carefully designed, robust food ordering system using modern technologies.
 This project could be extended in the future to be used 
-\linebreak
+\\
 
 % mention agile
 We used an agile structure where we had certain components we needed complete by specific dates.
@@ -170,7 +170,7 @@ Below we will:
 \item explain the various components of our project.
 \end{itemize}
 
-\section{Web App}
+\section{System Administration and Management Web Application}
 I decided to do this because of that, etc
 PHP is great but maybe a Java web server would have being better, easier to modify, I already know Java.
 SQL is hard to change over time, maybe implementing a NoSQL database would have been good...
@@ -286,14 +286,14 @@ Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core tech
 \chapter{Technology Review} % 7-10 pages
 % intro to tech review, bla bla bla
 
-\section{Web App}	% 4 pages
+  \section{System Administration and Management Web Application}	% 4 pages
 I decided to use PHP since I was already proficient at it and it works really well as a web app because....
-\subsection{php}
+    \subsection{php}
 PHP is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks.
 
 From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they designed it.
 
-\subsection{Zend Framework 2}
+    \subsection{Zend Framework 2}
 Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
 
 %------------------------------------------
@@ -309,7 +309,7 @@ Barry and Elhakeem~\cite{ZendFramework-Security-Model} argues that Zend Framewor
 
 Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture ~\cite{MVC_Architecture_for_Developing_Service-based_Mobile_Applications}. The \textbf{\textit{Zend Framework 2}} contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While \textbf{\textit{Ionic}} is responsible for Client Side View and Controller (on the smartphone). In this case Mobile application uses \textbf{\textit{zf2}} Controllers to connect to \textbf{\textit{MySQL}} database.
 
-\subsection{MySQL}
+    \subsection{MySQL}
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
 	\includegraphics[width=3cm]{img/zf2/mysql-logo.png}
@@ -317,7 +317,7 @@ Based on Hyun Jung La and Soo Dong Kim publication we can say that this project 
 %------------------------------------------
 To store information we were using \textbf{\textit{MySQL}} database management system. It's reliability is proven through the years. \textbf{\textit{MySQL}} offers complete ACID (atomic, consistent, isolated, durable) transaction support, unlimited row-level locking, distributed capability, and multi-version transaction support where readers never block writers and vice-versa. Easy manageable platform that allow a DBA to manage, troubleshoot, and control the operation of many \textbf{\textit{MySQL}} servers from a single workstation. ~\cite{MySQL_Top10_Reasons}
 
-\subsection{Composer}
+    \subsection{Composer}
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
 	\includegraphics[width=3cm]{img/zf2/composer-logo.png}
@@ -343,9 +343,9 @@ As you can see, require takes a key value pairs where key maps to package names 
  $ php composer.phar update
 \end{minted} 
 
-\subsection{WAMP Server}
+    \subsection{WAMP Server}
 
-\subsection{Server Grove Hosting}
+    \subsection{Server Grove Hosting}
 There is not so many hosting companies that supports Model View Controller structured \textbf{\textit{php}} websites, but the good old days when we were querying \textit{*.php} files are gone. This type of structure hides the extension and it will confuse the attacker on what sort of platform it was written.
 
 One of most popular hosting companies in Ireland is Blacknight Solutions. For one of my portfolio websites I was using their services. At that time I was not bothered with developing my own website from the scratch and I have used \textit{Drupal} Content Management System. It is quite easy to install and setup CMS for lite blog type of website, but when it comes to connecting 2 different platforms it is no longer useful. When I developed my porfolio website on \textbf{\textit{zf2}} and tried to host it on their server I had a lot of issues with their policy. Customers don't have access to main \textit{php.ini} file which can change write properties that has to be on to use MVC structured websites. 
@@ -354,30 +354,15 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 
 
 
-\subsection{GitHub}
+  \section{GitHub}
 
 %------------------------------------------
 \begin{wrapfigure}{r}{2.5cm}
 	\includegraphics[width=3cm]{img/zf2/github-logo.png}
 \end{wrapfigure} 
 %------------------------------------------
-text
 
-\subsection{JSON REST interface}
-
-~\cite{JSON_REST_interface}
-
-
-\begin{comment}
-\begin{wrapfigure}{r}{5.5cm}
-\caption{A wrapped figure going nicely inside the text.}\label{wrap-fig:1}
-\includegraphics[width=5.5cm]{img/zf2/composer-logo.png}
-\end{wrapfigure} 
-\end{comment}
-
-
-
-\section{Mobile App} % 4 pages
+  \section{Mobile App} % 4 pages
 \subsection{Ionic Framework}
 % talk about JS, AngularJS, CSS, HTML and Ionic.
 \subsubsection{HTML/CSS}
@@ -420,7 +405,7 @@ text
 
 \subsubsection{Xamarin}
 
-\section{Push Server}
+  \section{Push Server}
 
 
 \subsection{CouchDB/Cloudant}
@@ -430,18 +415,24 @@ text
 \subsection{ExpressJS}
 
 
-\section{REST Architecture}	% 1/2 pages
-\subsection{HTTP Requests}
-% talk about the HTTP get/post requests used via the interface from the phone and server
-\subsection{Custom API}
-% The web server has a custom API that the mobile app uses
 
-\section{JSON}	% 1 pages
+
+
+  \section{JSON REST interface architecture}	% 1 pages
+  \subsection{HTTP Requests}
+  % talk about the HTTP get/post requests used via the interface from the phone and server
+  \subsection{Custom API}
+  % The web server has a custom API that the mobile app uses
+
+  ~\cite{JSON_REST_interface}
+
 
 \chapter{System Design}	% n-m pages
-\section{Web App}
+  \section{Database}
+    
+  \section{System Administration and Management Web Application}
 
-\section{Mobile App}
+  \section{Mobile App}
 
 
 \chapter{System Evaluation}	% n-m pages
