@@ -429,7 +429,67 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 
 \chapter{System Design}	% n-m pages
   \section{Database}
+    \subsection{Purpose}
+
+This section describes how the database that will support the system with details of the logical and physical definitions. It also provides the functional and non-functional usage of the tables, considerations and requirements.
+
+The database design for the system is composed of definitions for db objects derived by mapping entities to tables, attributes to columns, unique identifiers to unique keys and relationships to foreign keys. 
+ 
+    \subsection{Procedures and Functions}
+ 
+    \subsection{Tables}
     
+    \subsubsection{Order System}
+	    
+Ionic application users table:	    
+	    % Customers
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{3cm}}
+	    		\toprule \\
+	    		\textbf{Column} & \textbf{Type} \\ \hline
+	    		id & binary(16) \\ \hline
+	    		gnumber & int(11) \\ \hline
+	    		email & varchar(40) \\ \hline
+	    		password & char(41) \\ \hline
+	    		cash & decimal(13,2) \\ \hline
+	    		active & tinyint(1) \\ \hline
+	    		created & datetime \\ \hline
+	    		updated & timestamp \\ \hline
+	    		name & varchar(40) \\ \hline
+	    		surname & varchar(40) \\ \hline
+	    		address & text \\ \hline
+	    		mobile & varchar(10) \\ \hline
+	    		cheat & int(10) \\
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Customers table}
+	    	\label{table:CustomersTable}
+	    \end{table}
+    
+    
+    \subsubsection{Administration}
+    
+Web application users table:
+	    % Users table
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{3cm}}
+	    		\toprule \\
+	    		\textbf{Column} & \textbf{Type} \\ \hline
+	    		id & unsigned int(10) \\ \hline
+	    		email & varchar(100) \\ \hline
+	    		password & varchar(100) \\ \hline
+	    		status & enum('Y','N') \\ \hline
+	    		created & datetime \\ \hline
+	    		modified & timestamp \\
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Users table}
+	    	\label{table:UsersTable}
+	    \end{table}
+    
+
   \section{System Administration and Management Web Application}
 
   \section{Mobile App}
