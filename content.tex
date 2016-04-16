@@ -291,7 +291,7 @@ I decided to use PHP since I was already proficient at it and it works really we
     \subsection{php}
 PHP is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks.
 
-From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they designed it.
+From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they redesigned it.
 
     \subsection{Zend Framework 2}
 Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
@@ -435,6 +435,18 @@ This section describes how the database that will support the system with detail
 
 The database design for the system is composed of definitions for db objects derived by mapping entities to tables, attributes to columns, unique identifiers to unique keys and relationships to foreign keys. 
  
+% Further, I will briefly describe the integration aspects of the Database with the Web Application.
+
+Further in this chapter I will describe the integration aspects of the Database with the Web Application and to understand them I want to explain some word definitions that will be used.
+\begin{itemize}
+\item Customer is a physical person who uses smartphone application.
+
+\item User is a physical person who operates with management website.
+
+\item Food is entire product of this business.
+
+\item Voucher is a printed card with unique code that allow customers to top up their account balance.
+\end{itemize}
     \subsection{Procedures and Functions}
  
  
@@ -736,6 +748,34 @@ This table stores information about available collection time:
 
   \section{System Administration and Management Web Application}
 
+In this section I will talk about functionality of this system. The amount of data that we are storing in our database is large and this system can be extended with minimal changes in the database structure. As you already seen what information we store in the system you can determine that customers details are stored separately from system users. 
+
+	\subsection{Admin Authentication}
+To authenticate users I am using ZF2 Auth ACL module. It is an open source module which can be accessed on GitHub. It contains 5 tables that describes website users, roles and route permissions. To improve systems security I made several changes into this module.
+	~\cite{Website_authentication}
+	
+	\subsection{QR code generator}
+QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
+		
+	\subsection{DOM PDF module}
+
+	~\cite{DOM_PDF_module}
+	
+	\subsection{PDF make}
+	
+	~\cite{PDF_Make_module}
+	
+	\subsection{Voucher system}
+
+This system required operations with money and we come up with great solution, to implement voucher system. Customers have to buy vouchers to top up their balance on the account. Cards has to be printable and in order to do so I am generating a \textit{*.pdf} file that can be printed or saved for future printing. Voucher contains short information about company and \textit{QR code} that allow to scan by smartphone to simplify code inserting process. Figure \ref{fig:voucher} shows an example of printed voucher.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/zf2/voucher-example.png}
+	\caption{Voucher example}
+	\label{fig:voucher}
+\end{figure}
+	
   \section{Mobile App}
 
 
