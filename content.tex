@@ -437,6 +437,45 @@ The database design for the system is composed of definitions for db objects der
  
     \subsection{Procedures and Functions}
  
+ 
+Verify Customer
+
+Block Customer
+
+Change customer's password
+
+Insert customer
+
+Recover customer's password
+
+Food insert 
+
+Food update
+
+Delete Food
+
+Create order
+
+Order price
+
+Food Order  Insert
+
+Order cancel payment
+
+Order make payment
+
+Create voucher
+
+Topup customer account
+
+User change password
+
+User delete
+
+User insert
+
+User verify
+ 
     \subsection{Tables}
     
     \subsubsection{Order System}
@@ -468,6 +507,90 @@ Ionic application users table:
 	    \end{table}
     
     
+Vouchers table:	    
+	% Vouchers
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & varchar(16) \\ \hline
+			amount & decimal(13,2) \\ \hline
+			used & tinyint(1) \\ \hline
+			customer & binary(16) \\ \hline
+			activated & datetime \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Vouchers table}
+		\label{table:VouchersTable}
+	\end{table}
+    
+Orders table:	    
+	% Orders
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{3cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & varchar(16) \\ \hline
+			customer & binary(16) \\ \hline
+			comments & medium text \\ \hline
+			paid & tinyint(1) \\ \hline
+			collectionTime & time \\ \hline
+			collectionDate & date \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Orders table}
+		\label{table:OrdersTable}
+	\end{table}    
+    
+Food table:	    
+	% Food
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{4cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & bigint(20) \\ \hline
+			name & varchar(40) \\ \hline
+			description & medium text \\ \hline
+			price & decimal(13,2) \\ \hline
+			type & enum('drink', 'roll', 'crisps', 'deal', 'misc') \\ \hline
+			picture & varchar(128) \\ \hline
+			active & tinyint(1) \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Food table}
+		\label{table:FoodTable}
+	\end{table}  
+    
+    
+Food ordered table:
+	% Food ordered
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			order\_id & varchar(16) \\ \hline
+			food\_id & bigint(20) \\ \hline
+			count & smallint(5) unsigned \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Food Ordered table}
+		\label{table:FoodOrderedTable}
+	\end{table}  
+    
+    
+    
     \subsubsection{Administration}
     
 Web application users table:
@@ -488,7 +611,128 @@ Web application users table:
 	    	\caption{Users table}
 	    	\label{table:UsersTable}
 	    \end{table}
-    
+
+	
+Web application resource table:
+	% resource table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			resource & varchar(100) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Resource table}
+		\label{table:ResourceTable}
+	\end{table}
+	
+Web application permission table:
+	% permission table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			permission & varchar(100) \\ \hline
+			resource & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Permission table}
+		\label{table:PermissionTable}
+	\end{table}
+
+Web application role table:
+	% role table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{5cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			name & varchar(100) \\ \hline
+			status & enum('Active', 'Inactive') \\
+			\bottomrule
+		\end{tabular}
+		\caption{Role table}
+		\label{table:RoleTable}
+	\end{table}
+
+Web application role permissions table:
+	% role-permissions table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			role & unsigned int(10) \\ \hline
+			permission & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Role permissions table}
+		\label{table:RolePermissionsTable}
+	\end{table}
+
+
+Web application user role table:
+	% user role table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			user & unsigned int(10) \\ \hline
+			role & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{User role table}
+		\label{table:UserRoleTable}
+	\end{table}
+
+
+	  \subsubsection{Management}
+Time available for ordering food table:
+	  % Opening time table
+	  \begin{table}[H]
+	  	\centering
+	  	\begin{tabular}{x{2cm}p{3cm}}
+	  		\toprule \\
+	  		\textbf{Column} & \textbf{Type} \\ \hline
+	  		id & unsigned int(10) \\ \hline
+	  		weekday & tinyint(1) \\ \hline
+	  		open & time \\ \hline
+	  		close & time \\ \hline 
+	  		active & enum('Y', 'N') \\ \hline
+	  		created & datetime \\ \hline
+	  		modified & timestamp \\
+	  		\bottomrule
+	  	\end{tabular}
+	  	\caption{Opening time table}
+	  	\label{table:OpeningTimeTable}
+	  \end{table}
+	  
+	  
+This table stores information about available collection time:
+% Collection time table
+\begin{table}[H]
+	\centering
+	\begin{tabular}{x{2cm}p{3cm}}
+		\toprule \\
+		\textbf{Column} & \textbf{Type} \\ \hline
+		id & unsigned int(10) \\ \hline
+		collection & time \\ \hline
+		active & enum('Y', 'N') \\ \hline
+		created & datetime \\ \hline
+		modified & timestamp \\
+		\bottomrule
+	\end{tabular}
+	\caption{Collection time table}
+	\label{table:CollectionTimeTable}
+\end{table}
 
   \section{System Administration and Management Web Application}
 
