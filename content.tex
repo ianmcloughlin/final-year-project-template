@@ -286,11 +286,11 @@ Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core tech
 % intro to tech review, bla bla bla
 
   \section{System Administration and Management Web Application}	% 4 pages
-I decided to use PHP since I was already proficient at it and it works really well as a web app because....
-    \subsection{php}
-PHP is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks.
+  After gathering all system requirements and we have done a research and based on them I decided to use PHP based framework because there is a lot of hosting companies that support this server scripting language and it has very cheap pricing.
+  
 
-From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they designed it.
+    \subsection{php}
+PHP is in the market since 1995 and is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks. From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they redesigned it.
 
     \subsection{Zend Framework 2}
 Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
@@ -466,8 +466,412 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 
 \chapter{System Design}	% n-m pages
   \section{Database}
+    \subsection{Purpose}
+
+This section describes how the database that will support the system with details of the logical and physical definitions. It also provides the functional and non-functional usage of the tables, considerations and requirements.
+
+The database design for the system is composed of definitions for db objects derived by mapping entities to tables, attributes to columns, unique identifiers to unique keys and relationships to foreign keys. 
+ 
+% Further, I will briefly describe the integration aspects of the Database with the Web Application.
+
+Further in this chapter I will describe the integration aspects of the Database with the Web Application and to understand them I want to explain some word definitions that will be used.
+\begin{itemize}
+\item Customer is a physical person who uses smartphone application.
+
+\item User is a physical person who operates with management website.
+
+\item Food is entire product of this business.
+
+\item Voucher is a printed card with unique code that allow customers to top up their account balance.
+\end{itemize}
+    \subsection{Procedures and Functions}
+One of good reasons to use stored procedures is the added layer of security that can be placed on the database from the calling application. The risk of a attacker using the account to run a stored procedure that has been written by you is far safer than having the user account have full insert, update and delete authority on the tables directly. Another advantage to use stored procedures is the data functionality that is separated from the application making it easier to manage, document and maintain. They also improves the performance for example to make a payment I am doing just one call and DBMS can process it, which is more efficient than do complete processing on the php side.
+\\
+
+\begin{itemize}
+	
+
+\item \textbf{Verify Customer}
+\\
+This procedure takes two parameters login name and password, then parses it and returns the result. This procedure is used to connect Ionic application with DBMS and verify customer's credentials. If the password and login matches database returns complete details about current customer. This information can be displayed in the mobile application.
+
+\item \textbf{Block Customer} 
+\\
+If system administrator sees that some user tried to enter invalid voucher id too many times, he can block this person. To keep a track of all invalid customer inputs I decided to add a basic counter, so that administrator can keep an eye on the malicious users that tries to insert voucher code permutations.
+
+\item \textbf{Change customer's password}
+\\
+One of the common procedures when user is allowed to change their password if they are authorized.
+
+\item \textbf{Insert customer}
+\\
+This procedure let people register their account as customer of the ordering system. To do that they have to insert their details, once that is done they can start using mobile application.
+
+\item \textbf{Recover customer's password}
+\\
+In order to recover the password, user have to insert their email address and login. It will trigger the scenario of generating new temporary password for this user and will send it out to their email address. The procedure of sending emails from web application uses SMTP protocol, by default it is linked with gmail account. The settings are stored statically in configuration file \textit{*/config/autoload/email.local.php}. If login and email exists in the database it will save new password.
+
+
+\item \textbf{Food insert}
+\\
+This procedure takes all food information, generates new identification number and returns it.
+
+
+\item \textbf{Food update}
+\\
+In order to update the food, we are not overriding the record, but creating a new one with unique id and setting the original \textit{'active'} column to \textit{false}. This technique let us to keep track of all changes and prevent updates on the old orders.
+
+
+\item \textbf{Delete Food}
+\\
+If user requires to remove the food, he is using this procedure. It just sets \textit{'active'} column to false and it will remove current food from list. But in case there was any orders with this food it will save a link and old details.
+
+
+\item \textbf{Create order}
+\\
+This procedure will create an order in case it receives all valid information and returns new generated id or null which mean something is invalid.
+
+\item \textbf{Food Order  Insert}
+\\
+When order is created and id returned, it starts filling it with products. 
+
+\item \textbf{Order make payment}
+\\
+This procedure compares the balance on the account and if it is sufficient to make a payment it will deducts the money from user and mark the order as paid. These operations are separate to prevent incompleteness of the transaction. 
+
+\item \textbf{Order price}
+\\
+This procedure calculates sum of order items and returns it.
+
+\item \textbf{Order cancel payment}
+\\
+To cancel order payment we have to calculate sum of item prices and return them to customers balance.
+
+\item \textbf{Create voucher}
+\\
+This function generates new voucher and places it in database.
+
+\item \textbf{Topup customer account}
+\\
+Current transaction marks the voucher with customers account identification and adds money to their balance. After that this id is no longer valid for next transaction.
+
+
+\end{itemize}
+ 
+    \subsection{Tables}
     
+    \subsubsection{Order System}
+	    
+Ionic application users table:	    
+	    % Customers
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{3cm}}
+	    		\toprule \\
+	    		\textbf{Column} & \textbf{Type} \\ \hline
+	    		id & binary(16) \\ \hline
+	    		gnumber & int(11) \\ \hline
+	    		email & varchar(40) \\ \hline
+	    		password & char(41) \\ \hline
+	    		cash & decimal(13,2) \\ \hline
+	    		active & tinyint(1) \\ \hline
+	    		created & datetime \\ \hline
+	    		updated & timestamp \\ \hline
+	    		name & varchar(40) \\ \hline
+	    		surname & varchar(40) \\ \hline
+	    		address & text \\ \hline
+	    		mobile & varchar(10) \\ \hline
+	    		cheat & int(10) \\
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Customers table}
+	    	\label{table:CustomersTable}
+	    \end{table}
+    
+    
+Vouchers table:	    
+	% Vouchers
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & varchar(16) \\ \hline
+			amount & decimal(13,2) \\ \hline
+			used & tinyint(1) \\ \hline
+			customer & binary(16) \\ \hline
+			activated & datetime \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Vouchers table}
+		\label{table:VouchersTable}
+	\end{table}
+    
+Orders table:	    
+	% Orders
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{3cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & varchar(16) \\ \hline
+			customer & binary(16) \\ \hline
+			comments & medium text \\ \hline
+			paid & tinyint(1) \\ \hline
+			collectionTime & time \\ \hline
+			collectionDate & date \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Orders table}
+		\label{table:OrdersTable}
+	\end{table}    
+    
+Food table:	    
+	% Food
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{4cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & bigint(20) \\ \hline
+			name & varchar(40) \\ \hline
+			description & medium text \\ \hline
+			price & decimal(13,2) \\ \hline
+			type & enum('drink', 'roll', 'crisps', 'deal', 'misc') \\ \hline
+			picture & varchar(128) \\ \hline
+			active & tinyint(1) \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Food table}
+		\label{table:FoodTable}
+	\end{table}  
+    
+    
+Food ordered table:
+	% Food ordered
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			order\_id & varchar(16) \\ \hline
+			food\_id & bigint(20) \\ \hline
+			count & smallint(5) unsigned \\ \hline
+			created & datetime \\ \hline
+			modified & timestamp \\
+			\bottomrule
+		\end{tabular}
+		\caption{Food Ordered table}
+		\label{table:FoodOrderedTable}
+	\end{table}  
+    
+    
+    
+    \subsubsection{Administration}
+    
+Web application users table:
+	    % Users table
+	    \begin{table}[H]
+	    	\centering
+	    	\begin{tabular}{x{2cm}p{3cm}}
+	    		\toprule \\
+	    		\textbf{Column} & \textbf{Type} \\ \hline
+	    		id & unsigned int(10) \\ \hline
+	    		email & varchar(100) \\ \hline
+	    		password & varchar(100) \\ \hline
+	    		status & enum('Y','N') \\ \hline
+	    		created & datetime \\ \hline
+	    		modified & timestamp \\
+	    		\bottomrule
+	    	\end{tabular}
+	    	\caption{Users table}
+	    	\label{table:UsersTable}
+	    \end{table}
+
+	
+Web application resource table:
+	% resource table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			resource & varchar(100) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Resource table}
+		\label{table:ResourceTable}
+	\end{table}
+	
+Web application permission table:
+	% permission table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			permission & varchar(100) \\ \hline
+			resource & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Permission table}
+		\label{table:PermissionTable}
+	\end{table}
+
+Web application role table:
+	% role table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{5cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			name & varchar(100) \\ \hline
+			status & enum('Active', 'Inactive') \\
+			\bottomrule
+		\end{tabular}
+		\caption{Role table}
+		\label{table:RoleTable}
+	\end{table}
+
+Web application role permissions table:
+	% role-permissions table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			role & unsigned int(10) \\ \hline
+			permission & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Role permissions table}
+		\label{table:RolePermissionsTable}
+	\end{table}
+
+
+Web application user role table:
+	% user role table
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{x{2cm}p{3cm}}
+			\toprule \\
+			\textbf{Column} & \textbf{Type} \\ \hline
+			id & unsigned int(10) \\ \hline
+			user & unsigned int(10) \\ \hline
+			role & unsigned int(10) \\
+			\bottomrule
+		\end{tabular}
+		\caption{User role table}
+		\label{table:UserRoleTable}
+	\end{table}
+
+
+	  \subsubsection{Management}
+Time available for ordering food table:
+	  % Opening time table
+	  \begin{table}[H]
+	  	\centering
+	  	\begin{tabular}{x{2cm}p{3cm}}
+	  		\toprule \\
+	  		\textbf{Column} & \textbf{Type} \\ \hline
+	  		id & unsigned int(10) \\ \hline
+	  		weekday & tinyint(1) \\ \hline
+	  		open & time \\ \hline
+	  		close & time \\ \hline 
+	  		active & enum('Y', 'N') \\ \hline
+	  		created & datetime \\ \hline
+	  		modified & timestamp \\
+	  		\bottomrule
+	  	\end{tabular}
+	  	\caption{Opening time table}
+	  	\label{table:OpeningTimeTable}
+	  \end{table}
+	  
+	  
+This table stores information about available collection time:
+% Collection time table
+\begin{table}[H]
+	\centering
+	\begin{tabular}{x{2cm}p{3cm}}
+		\toprule \\
+		\textbf{Column} & \textbf{Type} \\ \hline
+		id & unsigned int(10) \\ \hline
+		collection & time \\ \hline
+		active & enum('Y', 'N') \\ \hline
+		created & datetime \\ \hline
+		modified & timestamp \\
+		\bottomrule
+	\end{tabular}
+	\caption{Collection time table}
+	\label{table:CollectionTimeTable}
+\end{table}
+
   \section{System Administration and Management Web Application}
+
+In this section I will talk about functionality of this system. The amount of data that we are storing in our database is large and this system can be extended with minimal changes in the database structure. As you already seen what information we store in the system you can determine that customers details are stored separately from system users. 
+
+	\subsection{Admin Authentication}
+To authenticate users I am using ZF2 Auth ACL module. It is an open source module which can be accessed on GitHub. It contains 5 tables that describes website users, roles and route permissions. To improve systems security I made several changes into this module.
+	~\cite{Website_authentication}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/zf2/login-container.png}
+	\caption{Login container}
+	\label{fig:login-container}
+\end{figure}
+	
+	\subsection{Voucher system}
+
+This system required operations with money and we come up with great solution, to implement voucher system. Customers have to buy vouchers to top up their balance on the account. Cards has to be printable and in order to do so I am generating a \textit{*.pdf} file that can be printed or saved for future printing. Voucher contains short information about company and \textit{QR code} that allow to scan by smartphone to simplify code inserting process. Figure \ref{fig:voucher} shows an example of printed voucher.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/zf2/voucher-example.png}
+	\caption{Voucher example}
+	\label{fig:voucher}
+\end{figure}
+	
+To design this voucher and make it printable from web browser, I am using \textit{DOM pdf} generator. It allows to display remote pictures and specify fixed positions for text. \textit{QR Code} generating module submits the \textit{HTTP} request to Google API and receives a dynamic link to an image, which later in page generation I am using to add into \textit{pdf} file.
+
+	\subsubsection{QR code generator}
+	QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
+	
+	\subsubsection{DOM PDF module}
+	
+	~\cite{DOM_PDF_module}
+
+
+
+
+
+\subsection{Ionic routes \& functions}
+	\subsubsection{Authenticate customer}
+	\subsubsection{Recover customers password}
+	\subsubsection{Change customers password}
+	\subsubsection{Sign Up new customer}
+	\subsubsection{Top Up customer balance}
+	\subsubsection{Approve customer's order and purchase}
+	\subsubsection{Show customers history}
+	\subsubsection{Show available food}
+	
+	
+
+\subsection{PDF make}
+
+~\cite{PDF_Make_module}
+
+
 
   \section{Mobile App}
 
