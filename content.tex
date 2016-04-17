@@ -471,10 +471,9 @@ To solve this problems I have found \textit{Server Grove} hosting company that f
 This section describes how the database that will support the system with details of the logical and physical definitions. It also provides the functional and non-functional usage of the tables, considerations and requirements.
 
 The database design for the system is composed of definitions for db objects derived by mapping entities to tables, attributes to columns, unique identifiers to unique keys and relationships to foreign keys. 
- 
-% Further, I will briefly describe the integration aspects of the Database with the Web Application.
 
-Further in this chapter I will describe the integration aspects of the Database with the Web Application and to understand them I want to explain some word definitions that will be used.
+Further in this document you will read the integration aspects of the Database with the Web Application and to understand them I want to explain some word definitions that will be used.
+\\
 \begin{itemize}
 \item Customer is a physical person who uses smartphone application.
 
@@ -848,22 +847,100 @@ To design this voucher and make it printable from web browser, I am using \texti
 	QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
 	
 	\subsubsection{DOM PDF module}
-	
-	~\cite{DOM_PDF_module}
+	In order to generate \textit{*.pdf} file I have used DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
 
 
+	\subsection{Order system}
+		\subsubsection{Placed orders}
+			When customer using their application places the order and transaction fully completed, then this order appears on the \textit{home page} as this system is designed to be pre order. At the certain time before collection system administrator prints out the list of food that has to be prepared for customer. In order to make a good printable layout it creates a \textit{*.pdf} file using \textit{JavaScript} module called PDF make ~\cite{PDF_Make_module}. It uses Document definition object and you do not have to calculate position manually as like in other pdf generation libraries. For example it can be as simple as:
+			\\
+			\begin{minted}{JavaScript}
+var docDefinition = {
+content: [
+    // if you don't need styles, you can use a simple string to define a paragraph
+    'This is a standard paragraph, using default style',
 
+    // using a { text: '...' } object lets you set styling properties
+    { text: 'This paragraph will have a bigger font', fontSize: 15 },
 
+    // if you set pass an array instead of a string, you'll be able
+    // to style any fragment individually
+    {
+      text: [
+        'This paragraph is defined as an array of elements to make it possible to ',
+        { text: 'restyle part of it and make it bigger ', fontSize: 15 },
+        'than the rest.'
+      ]
+    }
+  ]
+};
+			\end{minted}
+			
+			
+			When you have prepared your document-definition-object, you can run the function that will parses it and generated \textit{pdf}:
+			\\
+			
+			\begin{minted}{JavaScript}
+// open the PDF in a new window
+pdfMake.createPdf(docDefinition).open();
+ 
+// print the PDF (temporarily Chrome-only)
+pdfMake.createPdf(docDefinition).print();
+ 
+// download the PDF (temporarily Chrome-only)
+pdfMake.createPdf(docDefinition).download('optionalName.pdf');
+			\end{minted}
+			
+			After order has been processed and collected, administrator has to go back to this system and mark collected orders. To simplify this process there is a check box beside each order and when all collected orders are marked user have to click \textit{Collected} button to make an update.
+			\\
+			In case of emergency some customer canceled their order administrator is allowed to cancel selected order and return money to customers account. In that case this order will not appear in later reports.
+			
+		\subsubsection{Order Reports}
+			In order to make an accounting report in the orders tab, administrator can select two types of reports:
+			\begin{itemize}
+				\item \textbf{Daily report}
+				\item \textbf{Periodic report}
+			\end{itemize} 
+			
+			To view daily report user should specify the date in \textit{mm/dd/yyyy} format and press submit button as you can see in figuer \ref{fig:select-report-page}. 
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{img/zf2/01-canteen_select_periodic_report_page.png}
+				\caption{Daily/Periodic report page}
+				\label{fig:select-report-page}
+			\end{figure}
+			
+			In the new page it will display report based on the period or specific date. Where user can go further and click order details, see customer's information or print this page as a report, see figure \ref{fig:daily-report-page}.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{img/zf2/01-canteen_select_periodic_report_page_1.png}
+				\caption{Daily/Periodic report page}
+				\label{fig:daily-report-page}
+			\end{figure}
+			
+			Order details will display full information about customer and items ordered. It can be printed separately as invoice (see figure \ref{fig:order-invoice-page}) or proceed to go and view customer personal details.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{img/zf2/01-canteen_select_periodic_report_page_2.png}
+				\caption{Daily/Periodic report page}
+				\label{fig:order-invoice-page}
+			\end{figure}
+			
+			
+		\subsubsection{User order history}
 
-\subsection{Ionic routes \& functions}
-	\subsubsection{Authenticate customer}
-	\subsubsection{Recover customers password}
-	\subsubsection{Change customers password}
-	\subsubsection{Sign Up new customer}
-	\subsubsection{Top Up customer balance}
-	\subsubsection{Approve customer's order and purchase}
-	\subsubsection{Show customers history}
-	\subsubsection{Show available food}
+	\subsection{Ionic routes \& functions}
+		\subsubsection{Authenticate customer}
+		\subsubsection{Recover customers password}
+		\subsubsection{Change customers password}
+		\subsubsection{Sign Up new customer}
+		\subsubsection{Top Up customer balance}
+		\subsubsection{Approve customer's order and purchase}
+		\subsubsection{Show customers history}
+		\subsubsection{Show available food}
 	
 	
 
@@ -878,7 +955,9 @@ To design this voucher and make it printable from web browser, I am using \texti
 
 \chapter{System Evaluation}	% n-m pages
 \section{Web App}
-
+	\subsection{PDF make vs DOM PDF}
+		why???
+	
 \section{Mobile App}
 
 
