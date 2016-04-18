@@ -290,23 +290,30 @@ Here we will discuss why we chose PHP, SQL, JavaScript and JSON as our core tech
   
 
     \subsection{php}
-PHP is in the market since 1995 and is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks. From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they redesigned it.
+	PHP is in the market since 1995 and is one of the widely used server scripting language. It is quite powerful tool for making dynamic web pages and it is free. There are many popular websites that are written on \textbf{\textit{php}} such as Facebook, Wikipedia, Flickr, Mailchimp, Wordpress.com. PHP code can be embedded into html page. This type of structure allow to use it in various web template systems, content management systems or web frameworks. From beginning \textbf{\textit{php}} wasn't object oriented language, but in the later versions they redesigned it.
 
     \subsection{Zend Framework 2}
-Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
+		Prototype was developed using \textbf{\textit{Zend Framework 2}}. This is an open source framework for developing Web applications and services. It was written on \textbf{\textit{php}} and it is loosely coupled architecture, which allow developer to code each component independently and designed with Model View Controller structure. \textbf{\textit{Zend Framework 2}} uses 100\% object-oriented code and utilises most of the new features of \textbf{\textit{PHP 5.3}}, namely namespaces, late static binding, lambda functions and closures.~\cite{ZendFramework-Website-About}
+		
+		%------------------------------------------
+		\begin{wrapfigure}{r}{2.5cm}
+			\includegraphics[width=3cm]{img/zf2/zf2-logo.png}
+		\end{wrapfigure} 
+		%------------------------------------------
+		Barry and Elhakeem~\cite{ZendFramework-Security-Model} argues that Zend Framework enables simple, rapid and agile web application development process, and it also offers AJAX support to convert XML data into JSON format and integrates the most widely used APIs and Web Services of third-party companies such as Google, Microsoft, Amazon, Flickr and Yahoo. ZF provides many options for validation such as Dojo tools it also allow to filter all inputs.
+		
+		%Zend Framework 2 is connected to a local MySQL relational database management system, to store the information about customers, orders and user accounts. The connection is established using ZF2 DB Adapter and Mysqli driver.
+		
+		%\includegraphics{img/zf2/ionic_zf2_mysql_diagram.png}
+		
+		Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture ~\cite{MVC_Architecture_for_Developing_Service-based_Mobile_Applications}. The \textbf{\textit{Zend Framework 2}} contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While \textbf{\textit{Ionic}} is responsible for Client Side View and Controller (on the smartphone). In this case Mobile application uses \textbf{\textit{zf2}} Controllers to connect to \textbf{\textit{MySQL}} database.
 
-%------------------------------------------
-\begin{wrapfigure}{r}{2.5cm}
-	\includegraphics[width=3cm]{img/zf2/zf2-logo.png}
-\end{wrapfigure} 
-%------------------------------------------
-Barry and Elhakeem~\cite{ZendFramework-Security-Model} argues that Zend Framework enables simple, rapid and agile web application development process, and it also offers AJAX support to convert XML data into JSON format and integrates the most widely used APIs and Web Services of third-party companies such as Google, Microsoft, Amazon, Flickr and Yahoo. ZF provides many options for validation such as Dojo tools it also allow to filter all inputs.
 
-%Zend Framework 2 is connected to a local MySQL relational database management system, to store the information about customers, orders and user accounts. The connection is established using ZF2 DB Adapter and Mysqli driver.
-
-%\includegraphics{img/zf2/ionic_zf2_mysql_diagram.png}
-
-Based on Hyun Jung La and Soo Dong Kim publication we can say that this project has a Balanced Model View Controller Architecture ~\cite{MVC_Architecture_for_Developing_Service-based_Mobile_Applications}. The \textbf{\textit{Zend Framework 2}} contains applications business logic or Model. And it is also responsible for validating user inputs or Server Side Controller and  Web application Views. While \textbf{\textit{Ionic}} is responsible for Client Side View and Controller (on the smartphone). In this case Mobile application uses \textbf{\textit{zf2}} Controllers to connect to \textbf{\textit{MySQL}} database.
+			\subsubsection{QR code generator}
+			QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
+			
+			\subsubsection{DOM PDF module}
+			In order to generate \textit{*.pdf} file I have used DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
 
     \subsection{MySQL}
 %------------------------------------------
@@ -843,12 +850,9 @@ This system required operations with money and we come up with great solution, t
 	
 To design this voucher and make it printable from web browser, I am using \textit{DOM pdf} generator. It allows to display remote pictures and specify fixed positions for text. \textit{QR Code} generating module submits the \textit{HTTP} request to Google API and receives a dynamic link to an image, which later in page generation I am using to add into \textit{pdf} file.
 
-	\subsubsection{QR code generator}
-	QR codes are very popular type of two-dimensional barcode~\cite{QR_code_google}. This module was used for generating QR codes for vouchers. When voucher is printed users can scan this code and top up their balance. This module is overridden  for Zend Framework 2 and it uses Google Developers QR code generation API.~\cite{QR_code_generator}
-	
-	\subsubsection{DOM PDF module}
-	In order to generate \textit{*.pdf} file I have used DOM PDF module for Zend Framework 2. This is most common plugin that let me to solve problems with printing remote image. It is easy to use, because it parses HTML as DOM object and generates pdf file based on that.~\cite{DOM_PDF_module}
 
+	\subsubsection{Lookup vouchers}
+	
 
 	\subsection{Order system}
 		\subsubsection{Placed orders}
@@ -930,8 +934,52 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 			\end{figure}
 			
 			
-		\subsubsection{User order history}
-
+		
+		
+		
+	\subsection{Customer and accountancy}
+		\subsubsection{Customer details}
+		
+		Authorized person can view all registered customers in accountancy tab and by clicking \textit{view} button. It will display a table with all users see in figure \ref{fig:customer-list}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\textwidth]{img/zf2/04-customers.png}
+			\caption{Customers list}
+			\label{fig:customer-list}
+		\end{figure}
+		
+		In this page we can select customers which we want to inform in updates and send them an email from default email. 
+		% (This configuration was mentioned earlier in Database chapter)
+		When person is found we can view his details as you can see in \ref{fig:customer-details} figure.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\textwidth]{img/zf2/02-customer_information.png}
+			\caption{Customers details}
+			\label{fig:customer-details}
+		\end{figure}
+		
+		In this section we are able to do such things like send an email to customer, block him or edit his personal details in case they are wrong. We can determine that this cheated once, this counter increments only when person tries to enter wrong QR code as their voucher. 
+		
+		\subsubsection{Customer history}
+		User has two types of histories. First one keeps a track of all user orders, so in future it can suggest user to make similar orders and history of user balance top up.
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\textwidth]{img/zf2/02-customer_information_topup_history.png}
+			\caption{Customers top up history}
+			\label{fig:customer-topup-history}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\textwidth]{img/zf2/02-customer_information_order_history.png}
+			\caption{Customers order history}
+			\label{fig:customer-order-history}
+		\end{figure}
+		
 	\subsection{Ionic routes \& functions}
 		\subsubsection{Authenticate customer}
 		\subsubsection{Recover customers password}
