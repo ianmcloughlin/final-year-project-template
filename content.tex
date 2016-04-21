@@ -1004,7 +1004,14 @@ pdfMake.createPdf(docDefinition).download('optionalName.pdf');
 \chapter{System Evaluation}	% n-m pages
 \section{Web App}
 	\subsection{PDF make vs DOM PDF}
-		why???
+		One of most commonly used modules for generating \textit{pdf} is DOM PDF for Zend Framework 2. This module let you generate file based on html type content. It has advantages such as easy to install using \textit{composer}, interprets html page as structure of pdf file, loading pictures from remote sources. But it also has a big disadvantage to generate large file it will require more PHP hosting memory. 
+		At the start all reports were planned to be made using DOM PDF module, but after testing, it show that there is not enough memory available for PHP services. 
+		
+		After doing some research on this problem, best solution was to increase RAM memory available for PHP service. On the local machine in the WAMP server you have to just change the \textit{memory\_limit} in the \textit{\textbf{php.ini}} file. That is a quick fix of this problem, but when it will come to upload this web application into real hosting, you will have same issue, because for increasing the  performance of your service you have to pay more money.
+		
+		To solve this problem and keep minimal required service performance, we decided to move pdf generation module from server side to client side. In this case website returns whole data that user required and it generates a report on the client computer. The idea was to use JavaScript that is interpreted by browser to create a pdf file \cite{PDF_Make_module}.
+		
+		Current web application uses both modules, domPDF is used for creating new vouchers. It generates maximum one page with 8 vouchers on it. They have specific margins for special paper and remotely created QR code to let users simply scan the code and top up their account balance. pdfMake can not be used for loading remote images, they have to be on the same origin. But when it comes to generate large list of invoices we are using a pdfMAKE that will send out the data to users computer and using JavaScript generates a pdf report that can be printed or saved.
 	
 \section{Mobile App}
 
